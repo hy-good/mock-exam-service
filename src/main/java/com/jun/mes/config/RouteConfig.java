@@ -15,7 +15,11 @@ public class RouteConfig implements WebFluxConfigurer {
 
   @Bean
   public RouterFunction<ServerResponse> routes(DemoHandler handler) {
-    return RouterFunctions.route().GET("/hello", handler::get).build();
+    return RouterFunctions.route()
+      .path(
+        "/hello",
+        builder -> builder.GET(handler::get)
+      ).build();
   }
 
 }
